@@ -7,10 +7,10 @@
 			<inputlayout>
 				<item value="Position" semantic="POSITION" />
 				<item value="Normal" semantic="NORMAL" />
-				<item value="Tangent" />
-				<item value="Bitangent" />
+				<item value="Tangent" semantic="NORMAL" />
+				<item value="Bitangent" semantic="NORMAL" />
 				<item value="Texcoord" semantic="TEXCOORD0" />
-				<item value="Color" />
+				<item value="Color" semantic="TEXCOORD0" />
 			</inputlayout>
 			<rendertexture />
 			<items>
@@ -51,13 +51,14 @@
 				</value>
 				<value variable="matColor" for="the_sphere">
 					<row>
-						<value>0.293426216</value>
-						<value>0.0635820776</value>
-						<value>0.834683955</value>
+						<value>0.762922585</value>
+						<value>0.683079898</value>
+						<value>0.95137763</value>
 					</row>
 				</value>
 			</itemvalues>
 			<variables>
+				<variable type="float4x4" name="matView" system="View" />
 				<variable type="float4x4" name="matVP" system="ViewProjection" />
 				<variable type="float4x4" name="matGeo" system="GeometryTransform" />
 				<variable type="float3" name="matColor">
@@ -104,15 +105,11 @@
 						<value>4</value>
 					</row>
 				</variable>
-				<variable type="float3" name="viewPosition">
-					<row>
-						<value>0</value>
-						<value>0</value>
-						<value>0</value>
-					</row>
-				</variable>
+				<variable type="float3" name="cameraPosition" system="CameraPosition3" />
 			</variables>
-			<macros />
+			<macros>
+				<define name="DEBUG" active="true"></define>
+			</macros>
 		</pass>
 		<pass name="LightObject" type="shader" active="true" patchverts="1">
 			<shader type="vs" path="shaders\LightObjectVS.glsl" entry="main" />
@@ -132,9 +129,9 @@
 					<scaleX>0.100000001</scaleX>
 					<scaleY>0.100000001</scaleY>
 					<scaleZ>0.100000001</scaleZ>
-					<x>-0.128916502</x>
-					<y>0.444055945</y>
-					<z>0.156948149</z>
+					<x>-0.287407219</x>
+					<y>0.415235192</y>
+					<z>0.206261873</z>
 					<topology>TriangleList</topology>
 				</item>
 			</items>
@@ -156,26 +153,32 @@
 	<objects />
 	<cameras />
 	<settings>
+		<entry type="property" name="light" item="pipe" />
 		<entry type="file" name="LightPass" shader="ps" />
 		<entry type="file" name="LightPass" shader="vs" />
 		<entry type="pinned" name="lightColor" owner="LightObject" />
-		<entry type="pinned" name="matColor" owner="LightPass" />
-		<entry type="pinned" name="matShininess" owner="LightPass" />
-		<entry type="pinned" name="lightAmbient" owner="LightPass" />
-		<entry type="pinned" name="lightDiffuse" owner="LightPass" />
-		<entry type="pinned" name="lightSpecular" owner="LightPass" />
-		<entry type="pinned" name="lightPos" owner="LightPass" />
 		<entry type="pinned" name="texRes" owner="LightPass" />
-		<entry type="pinned" name="viewPosition" owner="LightPass" />
+		<entry type="pinned" name="lightSpecular" owner="LightPass" />
+		<entry type="pinned" name="lightDiffuse" owner="LightPass" />
+		<entry type="pinned" name="lightAmbient" owner="LightPass" />
+		<entry type="pinned" name="lightPos" owner="LightPass" />
+		<entry type="pinned" name="matShininess" owner="LightPass" />
+		<entry type="pinned" name="matColor" owner="LightPass" />
 		<entry type="camera" fp="false">
 			<distance>2</distance>
-			<pitch>54</pitch>
-			<yaw>150</yaw>
+			<pitch>36</pitch>
+			<yaw>135</yaw>
 			<roll>360</roll>
 		</entry>
 		<entry type="clearcolor" r="0" g="0" b="0" a="0" />
 		<entry type="usealpha" val="false" />
-		<entry type="watch_expr" expr="tbn" />
+		<entry type="watch_expr" expr="nNormal" />
+		<entry type="watch_expr" expr="viewPosition" />
+		<entry type="watch_expr" expr="ourViewPosition" />
+		<entry type="watch_expr" expr="1" />
+		<entry type="watch_expr" expr="nNormal2" />
+		<entry type="watch_expr" expr="nNormal2 - nNormal" />
+		<entry type="bkpt" file="D:/tralha/ShaderED/shaders/such_light_SimplePS.glsl" line="73" use_cond="false" cond="" enabled="true" />
 	</settings>
 	<plugindata />
 </project>
