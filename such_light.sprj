@@ -1,0 +1,181 @@
+<?xml version="1.0"?>
+<project version="2">
+	<pipeline>
+		<pass name="LightPass" type="shader" active="true" patchverts="1">
+			<shader type="vs" path="shaders\such_light_SimpleVS.glsl" entry="main" />
+			<shader type="ps" path="shaders\such_light_SimplePS.glsl" entry="main" />
+			<inputlayout>
+				<item value="Position" semantic="POSITION" />
+				<item value="Normal" semantic="NORMAL" />
+				<item value="Tangent" />
+				<item value="Bitangent" />
+				<item value="Texcoord" semantic="TEXCOORD0" />
+				<item value="Color" />
+			</inputlayout>
+			<rendertexture />
+			<items>
+				<item name="the_plane" type="geometry">
+					<type>Plane</type>
+					<width>1</width>
+					<height>1</height>
+					<depth>1</depth>
+					<pitch>1.57079637</pitch>
+					<topology>TriangleList</topology>
+				</item>
+				<item name="the_sphere" type="geometry">
+					<type>Sphere</type>
+					<width>0.200000003</width>
+					<height>1</height>
+					<depth>1</depth>
+					<y>0.111074865</y>
+					<topology>TriangleList</topology>
+				</item>
+				<item name="the_cube" type="geometry">
+					<type>Cube</type>
+					<width>0.200000003</width>
+					<height>0.200000003</height>
+					<depth>0.200000003</depth>
+					<x>0.348464251</x>
+					<y>0.110094458</y>
+					<z>0.189158201</z>
+					<topology>TriangleList</topology>
+				</item>
+			</items>
+			<itemvalues>
+				<value variable="matColor" for="the_plane">
+					<row>
+						<value>0.534932673</value>
+						<value>0.588330626</value>
+						<value>0.547568798</value>
+					</row>
+				</value>
+				<value variable="matColor" for="the_sphere">
+					<row>
+						<value>0.293426216</value>
+						<value>0.0635820776</value>
+						<value>0.834683955</value>
+					</row>
+				</value>
+			</itemvalues>
+			<variables>
+				<variable type="float4x4" name="matVP" system="ViewProjection" />
+				<variable type="float4x4" name="matGeo" system="GeometryTransform" />
+				<variable type="float3" name="matColor">
+					<row>
+						<value>0.448946536</value>
+						<value>0.448943526</value>
+						<value>0.448942035</value>
+					</row>
+				</variable>
+				<variable type="float" name="matShininess">
+					<row>
+						<value>20</value>
+					</row>
+				</variable>
+				<variable type="float3" name="lightPos" function="ObjectProperty">
+					<row>
+						<value>light</value>
+						<value>Position</value>
+					</row>
+				</variable>
+				<variable type="float3" name="lightAmbient">
+					<row>
+						<value>0.105348468</value>
+						<value>0.101817243</value>
+						<value>0.096469827</value>
+					</row>
+				</variable>
+				<variable type="float3" name="lightDiffuse">
+					<row>
+						<value>1</value>
+						<value>0.999989986</value>
+						<value>0.999989986</value>
+					</row>
+				</variable>
+				<variable type="float3" name="lightSpecular">
+					<row>
+						<value>1</value>
+						<value>0.999989986</value>
+						<value>0.999989986</value>
+					</row>
+				</variable>
+				<variable type="int" name="texRes">
+					<row>
+						<value>4</value>
+					</row>
+				</variable>
+				<variable type="float3" name="viewPosition">
+					<row>
+						<value>0</value>
+						<value>0</value>
+						<value>0</value>
+					</row>
+				</variable>
+			</variables>
+			<macros />
+		</pass>
+		<pass name="LightObject" type="shader" active="true" patchverts="1">
+			<shader type="vs" path="shaders\LightObjectVS.glsl" entry="main" />
+			<shader type="ps" path="shaders\LightObjectPS.glsl" entry="main" />
+			<inputlayout>
+				<item value="Position" semantic="POSITION" />
+				<item value="Normal" semantic="NORMAL" />
+				<item value="Texcoord" semantic="TEXCOORD0" />
+			</inputlayout>
+			<rendertexture />
+			<items>
+				<item name="light" type="geometry">
+					<type>Sphere</type>
+					<width>0.100000001</width>
+					<height>1</height>
+					<depth>1</depth>
+					<scaleX>0.100000001</scaleX>
+					<scaleY>0.100000001</scaleY>
+					<scaleZ>0.100000001</scaleZ>
+					<x>-0.128916502</x>
+					<y>0.444055945</y>
+					<z>0.156948149</z>
+					<topology>TriangleList</topology>
+				</item>
+			</items>
+			<itemvalues />
+			<variables>
+				<variable type="float4x4" name="matVP" system="ViewProjection" />
+				<variable type="float4x4" name="matGeo" system="GeometryTransform" />
+				<variable type="float3" name="lightColor">
+					<row>
+						<value>1</value>
+						<value>1</value>
+						<value>1</value>
+					</row>
+				</variable>
+			</variables>
+			<macros />
+		</pass>
+	</pipeline>
+	<objects />
+	<cameras />
+	<settings>
+		<entry type="file" name="LightPass" shader="ps" />
+		<entry type="file" name="LightPass" shader="vs" />
+		<entry type="pinned" name="lightColor" owner="LightObject" />
+		<entry type="pinned" name="matColor" owner="LightPass" />
+		<entry type="pinned" name="matShininess" owner="LightPass" />
+		<entry type="pinned" name="lightAmbient" owner="LightPass" />
+		<entry type="pinned" name="lightDiffuse" owner="LightPass" />
+		<entry type="pinned" name="lightSpecular" owner="LightPass" />
+		<entry type="pinned" name="lightPos" owner="LightPass" />
+		<entry type="pinned" name="texRes" owner="LightPass" />
+		<entry type="pinned" name="viewPosition" owner="LightPass" />
+		<entry type="camera" fp="false">
+			<distance>2</distance>
+			<pitch>54</pitch>
+			<yaw>150</yaw>
+			<roll>360</roll>
+		</entry>
+		<entry type="clearcolor" r="0" g="0" b="0" a="0" />
+		<entry type="usealpha" val="false" />
+		<entry type="watch_expr" expr="tbn" />
+	</settings>
+	<plugindata />
+</project>
