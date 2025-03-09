@@ -22,14 +22,6 @@
 					<pitch>1.57079637</pitch>
 					<topology>TriangleList</topology>
 				</item>
-				<item name="the_sphere" type="geometry">
-					<type>Sphere</type>
-					<width>0.200000003</width>
-					<height>1</height>
-					<depth>1</depth>
-					<y>0.111074865</y>
-					<topology>TriangleList</topology>
-				</item>
 				<item name="the_cube" type="geometry">
 					<type>Cube</type>
 					<width>0.200000003</width>
@@ -40,6 +32,11 @@
 					<z>0.189158201</z>
 					<topology>TriangleList</topology>
 				</item>
+				<item name="the_icosphere" type="model">
+					<filepath>small-icosphere.obj</filepath>
+					<grouponly>false</grouponly>
+					<y>0.218802392</y>
+				</item>
 			</items>
 			<itemvalues>
 				<value variable="matColor" for="the_plane">
@@ -47,13 +44,6 @@
 						<value>0.534932673</value>
 						<value>0.588330626</value>
 						<value>0.547568798</value>
-					</row>
-				</value>
-				<value variable="matColor" for="the_sphere">
-					<row>
-						<value>0.762922585</value>
-						<value>0.683079898</value>
-						<value>0.95137763</value>
 					</row>
 				</value>
 			</itemvalues>
@@ -126,12 +116,12 @@
 					<width>0.100000001</width>
 					<height>1</height>
 					<depth>1</depth>
-					<scaleX>0.100000001</scaleX>
+					<scaleX>0.135608166</scaleX>
 					<scaleY>0.100000001</scaleY>
 					<scaleZ>0.100000001</scaleZ>
-					<x>-0.372191548</x>
-					<y>0.53538543</y>
-					<z>0.205154806</z>
+					<x>0.160336852</x>
+					<y>0.41346705</y>
+					<z>0.259070247</z>
 					<topology>TriangleList</topology>
 				</item>
 			</items>
@@ -151,11 +141,39 @@
 		</pass>
 	</pipeline>
 	<objects />
-	<cameras />
+	<cameras>
+		<camera name="close-up 1">
+			<row>
+				<value>0.816641808</value>
+				<value>-0</value>
+				<value>0.577144921</value>
+				<value>0.237790167</value>
+			</row>
+			<row>
+				<value>0.33268553</value>
+				<value>0.817144275</value>
+				<value>-0.470739484</value>
+				<value>-0.081599921</value>
+			</row>
+			<row>
+				<value>-0.471610606</value>
+				<value>0.576433241</value>
+				<value>0.667314112</value>
+				<value>-1.07852972</value>
+			</row>
+			<row>
+				<value>0</value>
+				<value>0</value>
+				<value>0</value>
+				<value>1</value>
+			</row>
+			<row />
+		</camera>
+	</cameras>
 	<settings>
-		<entry type="property" name="light" item="pipe" />
-		<entry type="file" name="LightPass" shader="ps" />
+		<entry type="property" name="the_icosphere" item="pipe" />
 		<entry type="file" name="LightPass" shader="vs" />
+		<entry type="file" name="LightPass" shader="ps" />
 		<entry type="pinned" name="lightColor" owner="LightObject" />
 		<entry type="pinned" name="texRes" owner="LightPass" />
 		<entry type="pinned" name="lightSpecular" owner="LightPass" />
@@ -166,19 +184,22 @@
 		<entry type="pinned" name="matColor" owner="LightPass" />
 		<entry type="camera" fp="false">
 			<distance>2</distance>
-			<pitch>41</pitch>
-			<yaw>151</yaw>
+			<pitch>38</pitch>
+			<yaw>153</yaw>
 			<roll>360</roll>
 		</entry>
 		<entry type="clearcolor" r="0" g="0" b="0" a="0" />
 		<entry type="usealpha" val="false" />
 		<entry type="watch_expr" expr="nNormal" />
 		<entry type="watch_expr" expr="viewPosition" />
-		<entry type="watch_expr" expr="ourViewPosition" />
 		<entry type="watch_expr" expr="1" />
 		<entry type="watch_expr" expr="nNormal2" />
 		<entry type="watch_expr" expr="nNormal2 - nNormal" />
-		<entry type="vecwatch_expr" expr="viewPosition" color_r="0.309803933" color_g="0.631372571" color_b="0.811764717" />
+		<entry type="vecwatch_expr" expr="nNormal" color_r="1" color_g="0" color_b="0" />
+		<entry type="vecwatch_expr" expr="nNormal2" color_r="0.107864983" color_g="0.0866350085" color_b="0.90599674" />
+		<entry type="vecwatch_expr" expr="xTangent*300" color_r="0.811993539" color_g="0.311900288" color_b="0.311900288" />
+		<entry type="vecwatch_expr" expr="yTangent*300" color_r="0.46745351" color_g="0.614262581" color_b="0.208072737" />
+		<entry type="bkpt" file="D:/tralha/ShaderED/shaders/such_light_SimplePS.glsl" line="102" use_cond="false" cond="" enabled="true" />
 	</settings>
 	<plugindata />
 </project>

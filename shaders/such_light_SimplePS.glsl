@@ -75,6 +75,8 @@ void main() {
 	vec3 nRefl2 = reflect(-nLight2, nNormal2);
 	
 	float dotLN  = dot(nLight, nNormal);   // Facing ratio
+	float dotLNFlat = dot(nLight, nNormal2);
+	dotLN = dotLNFlat;
 	float dotLN2 = dot(nLight2, nNormal2); // Facing ratio, snapped edition
 	vec3 diffuse  = lightDiffuse * dotLN;
 	vec3 diffuse2 = lightDiffuse * dotLN2;
@@ -93,9 +95,10 @@ void main() {
  	vec2 texelUV = posterize(objUV);
  	vec3 border = vec3(abs(dFdx(texelUV)) + abs(dFdy(texelUV)), 0.0);
 	float center = smoothstep(0.992, 0.996, 1-length(dUV));
+	color2 = abs(dXYZ);
 	color += border; color2 += border; color += center; color2 += center;
 	#endif
 	
 	outColor = vec4(color, 1.0f);
-	outColor = vec4(color2, 1.0f);
+//	outColor = vec4(color2, 1.0f);
 }
