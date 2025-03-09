@@ -129,9 +129,9 @@
 					<scaleX>0.100000001</scaleX>
 					<scaleY>0.100000001</scaleY>
 					<scaleZ>0.100000001</scaleZ>
-					<x>-0.287407219</x>
-					<y>0.415235192</y>
-					<z>0.206261873</z>
+					<x>-0.372191548</x>
+					<y>0.53538543</y>
+					<z>0.205154806</z>
 					<topology>TriangleList</topology>
 				</item>
 			</items>
@@ -166,8 +166,8 @@
 		<entry type="pinned" name="matColor" owner="LightPass" />
 		<entry type="camera" fp="false">
 			<distance>2</distance>
-			<pitch>36</pitch>
-			<yaw>135</yaw>
+			<pitch>41</pitch>
+			<yaw>151</yaw>
 			<roll>360</roll>
 		</entry>
 		<entry type="clearcolor" r="0" g="0" b="0" a="0" />
@@ -178,7 +178,7 @@
 		<entry type="watch_expr" expr="1" />
 		<entry type="watch_expr" expr="nNormal2" />
 		<entry type="watch_expr" expr="nNormal2 - nNormal" />
-		<entry type="bkpt" file="D:/tralha/ShaderED/shaders/such_light_SimplePS.glsl" line="73" use_cond="false" cond="" enabled="true" />
+		<entry type="vecwatch_expr" expr="viewPosition" color_r="0.309803933" color_g="0.631372571" color_b="0.811764717" />
 	</settings>
 	<plugindata />
 </project>

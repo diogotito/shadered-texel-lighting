@@ -91,7 +91,7 @@ void main() {
 	#ifdef DEBUG
  	vec2 texelUV = posterize(objUV);
  	vec3 border = vec3(abs(dFdx(texelUV)) + abs(dFdy(texelUV)), 0.0);
-	float center = smoothstep(0.010, 0.005, length(dUV));
+	float center = smoothstep(0.992, 0.996, 1-length(dUV));
 	color += border; color2 += border; color += center; color2 += center;
 	#endif
 	
