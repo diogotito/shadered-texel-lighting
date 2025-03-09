@@ -34,14 +34,14 @@ void main() {
 	vec2 dUV = centerUV - originalUV;
 	
 	// 2a.)
-	vec3 originalWorldPos = objPosition;
+	vec3 originalWorldPos = pos;
 	
 	// 2b.)
 	vec2 dUVdS = dFdx(originalUV);
 	vec2 dUVdT = dFdy(originalUV);
 	
 	// 2c.)
-	mat2 dSTdUV = mat2(dUVdT[1], -dUVdT[0], -dUVdS[1], dUVdS[0])*(1.0f/(dUVdS[0]*dUVdT[1]-dUVdT[0]*dUVdS[1]));
+	mat2 dSTdUV = mat2(dUVdT[1], -dUVdT[0], -dUVdS[1], dUVdS[0]) * (1.0f/(dUVdS[0]*dUVdT[1]-dUVdT[0]*dUVdS[1]));
 	
 	// 2d.)
 	vec2 dST = dSTdUV * dUV;
@@ -95,10 +95,10 @@ void main() {
  	vec2 texelUV = posterize(objUV);
  	vec3 border = vec3(abs(dFdx(texelUV)) + abs(dFdy(texelUV)), 0.0);
 	float center = smoothstep(0.992, 0.996, 1-length(dUV));
-	color2 = abs(dXYZ);
+	color2 = snappedWorldPos;
 	color += border; color2 += border; color += center; color2 += center;
 	#endif
 	
-	outColor = vec4(color, 1.0f);
-//	outColor = vec4(color2, 1.0f);
+	outColor = vec4(color, 0.0f);
+	outColor = vec4(color2, 1.0f);
 }
