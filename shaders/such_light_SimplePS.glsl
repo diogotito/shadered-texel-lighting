@@ -44,7 +44,7 @@ void main() {
 	mat2 dSTdUV = mat2(dUVdT[1], -dUVdT[0], -dUVdS[1], dUVdS[0]) * (1.0f/(dUVdS[0]*dUVdT[1]-dUVdT[0]*dUVdS[1]));
 	
 	// 2d.)
-	vec2 dST = dSTdUV * dUV;
+	vec2 dST = dUV * dSTdUV;
 	
 	// 2e.)
 	vec3 dXYZdS = dFdx(originalWorldPos);
@@ -70,14 +70,14 @@ void main() {
 	vec3 nNormal  = normalize(objNormal);
 	vec3 xTangent = dFdx(viewPosition);
 	vec3 yTangent = dFdy(viewPosition);
-	vec3 nNormal2 = normalize(cross( xTangent, yTangent ));
+	vec3 nNormal2 = normalize(cross( xTangent, yTangent )); // for flat shading
 	vec3 nRefl  = reflect(-nLight, nNormal);
-	vec3 nRefl2 = reflect(-nLight2, nNormal2);
+	vec3 nRefl2 = reflect(-nLight2, nNormal);
 	
 	float dotLN  = dot(nLight, nNormal);   // Facing ratio
 	float dotLNFlat = dot(nLight, nNormal2);
-	dotLN = dotLNFlat;
-	float dotLN2 = dot(nLight2, nNormal2); // Facing ratio, snapped edition
+//	dotLN = dotLNFlat;
+	float dotLN2 = dot(nLight2, nNormal); // Facing ratio, snapped edition
 	vec3 diffuse  = lightDiffuse * dotLN;
 	vec3 diffuse2 = lightDiffuse * dotLN2;
 	vec3 specular  = pow(max(0.0, dot(nView , nRefl )), matShininess) * lightSpecular;
@@ -95,7 +95,7 @@ void main() {
  	vec2 texelUV = posterize(objUV);
  	vec3 border = vec3(abs(dFdx(texelUV)) + abs(dFdy(texelUV)), 0.0);
 	float center = smoothstep(0.992, 0.996, 1-length(dUV));
-	color2 = snappedWorldPos;
+//	/* [DEBUG] */ color2 = snappedWorldPos;
 	color += border; color2 += border; color += center; color2 += center;
 	#endif
 	
