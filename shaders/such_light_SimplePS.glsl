@@ -1,4 +1,5 @@
 #version 330
+// https://discussions.unity.com/t/the-quest-for-efficient-per-texel-lighting/700574/9
 
 in vec3 objPosition;
 in vec3 viewPosition;
