@@ -1,6 +1,7 @@
 #version 330
 // https://discussions.unity.com/t/the-quest-for-efficient-per-texel-lighting/700574/9
 
+in float fIsDebug;
 in vec3 fObjPosition;
 in vec3 fViewPosition;
 in vec3 fObjNormal;
@@ -102,4 +103,8 @@ void main() {
 	
 	outColor = vec4(color, 0.0f);
 	outColor = vec4(color2, 1.0f);
+	
+	if (fIsDebug > 0.0) {
+		outColor = vec4(0.1, 0.9, 0.1, 0.0);
+	}
 }
