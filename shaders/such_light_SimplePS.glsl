@@ -104,7 +104,9 @@ void main() {
 	outColor = vec4(color, 0.0f);
 	outColor = vec4(color2, 1.0f);
 	
+	#ifdef DEBUG
 	if (fIsDebug > 0.0) {
 		outColor = vec4(0.1, 0.9, 0.1, 0.0);
 	}
+	#endif
 }

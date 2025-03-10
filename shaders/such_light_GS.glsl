@@ -32,6 +32,7 @@ void main() {
 	EndPrimitive();
 
 	// Add sneaky little arrows
+	#ifdef DEBUG
 	fIsDebug = 1.0;
 	for (int i = 0; i < 3; i++) {
 		fObjPosition = objPosition[i];
@@ -46,4 +47,5 @@ void main() {
 		EmitVertex();
 		EndPrimitive();
 	}
+	#endif
 }
