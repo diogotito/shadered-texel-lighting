@@ -106,7 +106,7 @@ void main() {
 	
 	#ifdef DEBUG
 	if (fIsDebug > 0.0) {
-		outColor = vec4(0.1, 0.9, 0.1, 0.0);
+		outColor = mix(outColor, vec4(0.1, 0.9, 0.1, 0.0), 0.5);
 	}
 	#endif
 }

@@ -1,5 +1,9 @@
 #version 330
 
+#ifndef NORMAL_STRETCH
+#define NORMAL_STRETCH 0.04
+#endif
+
 uniform mat4 matView;
 uniform mat4 matVP;
 uniform mat4 matGeo;
@@ -14,6 +18,7 @@ out vec3 objPosition;
 out vec3 viewPosition;
 out vec3 objNormal;
 out vec2 objUV;
+out vec4 debugNormal;
 
 void main() {
    objNormal = (matGeo * vec4(normal, 0)).xyz;
@@ -21,4 +26,5 @@ void main() {
    viewPosition = (matView * (matGeo * vec4(pos, 1))).xyz;
    objUV = texcoord;
    gl_Position = matVP * matGeo * vec4(pos, 1);
+   debugNormal = matVP * matGeo * vec4(pos + NORMAL_STRETCH * normal, 1);
 }
