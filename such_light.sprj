@@ -4,6 +4,7 @@
 		<pass name="LightPass" type="shader" active="true" patchverts="1">
 			<shader type="vs" path="shaders\such_light_SimpleVS.glsl" entry="main" />
 			<shader type="ps" path="shaders\such_light_SimplePS.glsl" entry="main" />
+			<shader used="true" type="gs" path="shaders\such_light_GS.glsl" entry="main" />
 			<inputlayout>
 				<item value="Position" semantic="POSITION" />
 				<item value="Normal" semantic="NORMAL" />
@@ -114,7 +115,7 @@
 				</variable>
 				<variable type="int" name="texRes">
 					<row>
-						<value>4</value>
+						<value>8</value>
 					</row>
 				</variable>
 				<variable type="float3" name="cameraPosition" system="CameraPosition3" />
@@ -141,9 +142,9 @@
 					<scaleX>0.135608166</scaleX>
 					<scaleY>0.100000001</scaleY>
 					<scaleZ>0.100000001</scaleZ>
-					<x>0.449947804</x>
-					<y>0.207808435</y>
-					<z>-0.0129817128</z>
+					<x>0.323856175</x>
+					<y>0.310805738</y>
+					<z>-0.135683358</z>
 					<topology>TriangleList</topology>
 				</item>
 			</items>
@@ -193,9 +194,10 @@
 		</camera>
 	</cameras>
 	<settings>
-		<entry type="property" name="the_sphereasdfadsfsadf" item="pipe" />
+		<entry type="property" name="LightPass" item="pipe" />
 		<entry type="file" name="LightPass" shader="vs" />
 		<entry type="file" name="LightPass" shader="ps" />
+		<entry type="file" name="LightPass" shader="gs" />
 		<entry type="pinned" name="lightColor" owner="LightObject" />
 		<entry type="pinned" name="texRes" owner="LightPass" />
 		<entry type="pinned" name="lightSpecular" owner="LightPass" />
@@ -206,8 +208,8 @@
 		<entry type="pinned" name="matColor" owner="LightPass" />
 		<entry type="camera" fp="false">
 			<distance>2</distance>
-			<pitch>2</pitch>
-			<yaw>316</yaw>
+			<pitch>34</pitch>
+			<yaw>13</yaw>
 			<roll>360</roll>
 		</entry>
 		<entry type="clearcolor" r="0" g="0" b="0" a="0" />
@@ -221,8 +223,11 @@
 		<entry type="vecwatch_expr" expr="nNormal2" color_r="0.107864983" color_g="0.0866350085" color_b="0.90599674" />
 		<entry type="vecwatch_expr" expr="xTangent*300" color_r="0.811993539" color_g="0.311900288" color_b="0.311900288" />
 		<entry type="vecwatch_expr" expr="yTangent*300" color_r="0.46745351" color_g="0.614262581" color_b="0.208072737" />
-		<entry type="bkpt" file="D:/tralha/ShaderED/shaders/such_light_SimplePS.glsl" line="105" use_cond="false" cond="" enabled="true" />
-		<entry type="bkpt" file="D:/tralha/ShaderED/shaders/such_light_SimplePS.glsl" line="102" use_cond="false" cond="" enabled="true" />
+		<entry type="bkpt" file="D:/tralha/ShaderED/shaders/such_light_SimplePS.glsl" line="108" use_cond="false" cond="" enabled="true" />
+		<entry type="bkpt" file="D:/tralha/ShaderED/shaders/such_light_SimplePS.glsl" line="107" use_cond="false" cond="" enabled="true" />
+		<entry type="bkpt" file="D:/tralha/ShaderED/shaders/such_light_SimplePS.glsl" line="104" use_cond="false" cond="" enabled="true" />
+		<entry type="bkpt" file="D:/tralha/ShaderED/shaders/such_light_SimplePS.glsl" line="106" use_cond="false" cond="" enabled="true" />
+		<entry type="bkpt" file="D:/tralha/ShaderED/shaders/such_light_SimplePS.glsl" line="103" use_cond="false" cond="" enabled="true" />
 	</settings>
 	<plugindata />
 </project>
